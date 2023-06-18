@@ -39,16 +39,18 @@ function httpGetPointsById(req, res){
 function httpPostReceipts(req, res){
     try {
 
-       const { error } = validateReceipt(targetReceipt);
+       //Can switched to a different receipt and the result will be pushed
+       //to the main array along wiht the generated ID.  
+      let receipt = targetReceipt;  
+      
+       const { error } = validateReceipt(receipt);
 
        if(!error){
         const id = uuidv4();
-
-        //Can switched to a different receipt and the result will be pushed
-        //to the main array along wiht the generated ID.
+    
         const newReceipt = {
              id,
-             ...marketReceipt
+             ...receipt
         }
  
         receipts.push(newReceipt);
